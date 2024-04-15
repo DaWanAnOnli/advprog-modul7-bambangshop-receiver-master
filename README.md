@@ -86,4 +86,8 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-1
 
+1. RwLock (Read-Write Lock) adalah sejenis lock di mana data dapat diakses (di-read) oleh banyak thread sekaligus, namun data hanya dapat di-edit (write) oleh satu thread. Mutex (Mutual Exclusion) adalah sejenis lock di mana data hanya dapat diakses sepenuhnya (baik read atau write0 oleh satu thread di waktu tertentu. Untuk konteks notifikasi, tentunya kita tidak ingin semua thread bisa mengeditnya (yang boleh mengedit hanyalah pembuat notifikasi itu sendiri), karena dapat mengancam data integrity. Namun kita tetap ingin agar data notifikasi dapat diakses banyak thread (dalam kasus ini subscriber) dalam waktu yang sama. Jika tidak demikian, setiap subscriber harus mengantri untuk dapat mengakses notifikasi tertentu; tentu ini tidak efisien.
+
+2. Rust tidak mengizinkan perubahan variabel static seperti Java demi alasan keamanan. Rust adalah bahasa yang dapat dijalankan secara concurrent, sehingga memilik risiko-risiko sendiri, seperti race condition dan lost update. Data yang mutable (termasuk data static) rawan terhadap kesalahan dalam pemrograman concurrent, dan masalahnya tidak selalu dapat ditemukan dengan mudah. Immutability meningkatkan prediktabilitas program paralel/concurrent sehingga lebih mudah untuk dikelola.
+
 #### Reflection Subscriber-2
