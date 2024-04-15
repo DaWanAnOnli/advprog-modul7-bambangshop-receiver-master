@@ -17,7 +17,7 @@ impl NotificationService{
     async fn subscribe_request(product_type: String) -> Result<SubscriberRequest>{
         let product_type_upper: String = product_type.to_uppercase();
         let product_type_str: &str = product_type_upper.as_str();
-        let notification_receiver_url: String = format!("{}/receiver",
+        let notification_receiver_url: String = format!("{}/receive",
             APP_CONFIG.get_instance_root_url());
         let payload: SubscriberRequest = SubscriberRequest {
             name: APP_CONFIG.get_instance_name().to_string(),
